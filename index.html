@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app="App">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Repayment System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css" integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<body ng-controller="myCtrl">
+	<div class="bg-containeer">
+		<div class="p-3">
+			<h1 class="text-center text-white mb-5">Bank Repayment System</h1>
+			<form class="inputData mb-3">
+				<div class="row">
+					<div class="col-md-2">
+						<label for="AmountOfMoney" class="form-label text-white">Amount Of Money:</label>
+  						<input type="text" class="form-control" id="AmountOfMoney" ng-model="AmountOfMoney" placeholder="Amount Of Money">
+  					</div>
+  					<div class="col-md-2">
+						<label for="DurationOfLoan" class="form-label text-white">Duration Of Loan (Years):</label>
+  						<input type="text" class="form-control" id="DurationOfLoan" ng-model="DurationOfLoan" placeholder="Duration Of Loan">
+  					</div>
+  					<div class="col-md-2">
+						<label for="PercentageOfLoan" class="form-label text-white">Rate Of Loan (%/Yearly):</label>
+  						<input type="text" class="form-control" id="PercentageOfLoan" ng-model="PercentageOfLoan" placeholder="RateOfLoan">
+  					</div>
+					<div class="col-md-2">
+  						<label for="paymentType" class="form-label text-white">Payment Type:</label>
+						<br>
+				      	<select id="paymentType" ng-model="paymentType" class="form-control">
+					        <option value="fixed" selected>Fixed Monthly Payments</option>
+					        <option value="notFixed">Not Fixed Monthly Payments</option>
+				      	</select>
+				    </div>
+  					<div class="col-md-2">
+  						<label for="PercentageOfLoan" class="mb-3"></label>
+  						<input  type="button" class="form-control" id="submit" 
+  							    style="	background: #ffc107;
+									    color: black;
+									    margin-top: 7px;
+									    border: 0;" 
+								value="Calculate Now" ng-click="rateCalculator()">
+  					</div>
+  					<div class="col-md-2">
+  						<label for="PercentageOfLoan" class="mb-4"></label>
+						<button type="button" class="form-control"  ng-click="exportToExcel()">Export as Excel</button>
+  					</div>
+				</div>
+			</form>
+			<table class="table text-white">
+				<thead>
+					<tr>
+					  <th scope="col">Months</th>
+					  <th scope="col">Present Value</th>
+					  <th scope="col"> Accumalate</th>
+					  <th scope="col">Rate</th>
+					  <th scope="col">Total</th>
+					</tr>
+				</thead>
+				<tbody ng-bind-html="trustedAppTitle">
+				</tbody>
+				<tfoot>
+					<tr class="float-right">
+						<th scope="row" colspan="5" style="text-align: right; padding-right: 50px; white-space: nowrap;">Sub Total: {{subTotal}} $</th>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+	</div>
+	<script src="directive.js"></script>
+</body>
+</html>
