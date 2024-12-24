@@ -12,8 +12,7 @@ app.controller('myCtrl', function ($scope, $sce) {
       // Clear previous calculations
       $scope.table = "";
       $scope.subTotal = 0;
-      $scope.excelData = []; // Clear Excel data
-
+      $scope.excelData = []; 
       // Inputs
       const P = parseFloat($scope.AmountOfMoney); // Principal
       const n = parseInt($scope.DurationOfLoan) * 12; // Total number of payments (months)
